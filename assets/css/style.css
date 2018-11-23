@@ -1,0 +1,12 @@
+body {
+    background-image: url("../images/background.jpg");
+    background-size: 100%;
+}
+.section {
+    margin-top: 5%;
+    padding: 25px;
+
+}
+.title {
+    text-align: center;
+}
