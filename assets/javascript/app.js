@@ -61,32 +61,56 @@ var questions = [
     correctAnswer: "b"
 },
 ];
-var timer = 120;
+var timer = 60;
+var intervalID;
+var correctAnswer = 0;
+var wrongAnswer = 0;
+var notAnswer = 0;
 
-
+// set timer time
+function run() {
+    intervalID = setInterval(decrement, 1000);
+}
 
 // grab ID's for Start Game, hide everything else until start is pressed, hide start after pressed
 $(document).ready(function(){
-    $("#questions").hide();
     $("#submit").hide();
-    $("#time-rem").hide();
-    $("#start-game").on("click", quizBody);
+    // $("#time-rem").hide();
 });
 
+$("#start-game").click(quizBody);
+
 function quizBody() {
-    var output = [];
-    questions.forEach()
-
+    // var output = [];
+    // questions.forEach()
+    run();
     $("#start-game").hide();
-    $("#time-rem").text(timer);
-
-})
+    // $("#time-rem").html();
+    $("#questions").html(questions);
+    $("#submit").show();
+alert("hello");
+};
 
 // grab id for time, set timer function to end game and display answers/score
-
-
+function decrement(){
+    timer--;
+$("#time-rem").html("<h3>Time Remaining: </h3>" + timer);
+if (timer === 0) {
+    timesUp();
+}
+}
 // function to click answers. Only be able to click one at a time
-$("answers-1").radio("hello");
+// $("answers-1").radio(questions.answers);
 
 
 // function to submit answers
+
+// function for timer to be up
+function timesUp() {
+    clearInterval(intervalID);
+    $("#submit").hide();
+    $("#questions").hide();
+    $("#scores").html(
+        "<div>Correct: " + correctAnswer + "</div>"
+    )
+}

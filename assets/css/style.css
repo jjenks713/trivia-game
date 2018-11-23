@@ -5,6 +5,7 @@ body {
 .section {
     margin-top: 5%;
     padding: 25px;
+    border-radius: 12%;
 
 }
 .title {
