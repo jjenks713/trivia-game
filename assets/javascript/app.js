@@ -67,9 +67,17 @@ var correctAnswer = 0;
 var wrongAnswer = 0;
 var notAnswer = 0;
 
-// set timer time
+// set timer
 function run() {
     intervalID = setInterval(decrement, 1000);
+}
+// grab id for time, set timer function, link to end game function and display answers/score.
+function decrement(){
+    timer--;
+$("#time-rem").html("<h1>Time Remaining: " + timer + "</h1>");
+if (timer === 0) {
+    timesUp();
+}
 }
 
 // grab ID's for Start Game, hide everything else until start is pressed, hide start after pressed
@@ -81,36 +89,48 @@ $(document).ready(function(){
 $("#start-game").click(quizBody);
 
 function quizBody() {
-    // var output = [];
-    // questions.forEach()
     run();
+    
     $("#start-game").hide();
-    // $("#time-rem").html();
-    $("#questions").html(questions);
     $("#submit").show();
-alert("hello");
+    questionsAndAnswers();
+// alert("hello");
 };
 
-// grab id for time, set timer function to end game and display answers/score
-function decrement(){
-    timer--;
-$("#time-rem").html("<h3>Time Remaining: </h3>" + timer);
-if (timer === 0) {
+    // function for questions and answers, add radio buttons for answers.
+function questionsAndAnswers () {
+    // var output = [];
+    // questions.forEach()
+    $("#questions").append("questions.question[1], questions.answers[1]");
+}
+// for reference
+// var questions = [
+//     {
+//     question: "What year was The Shawshank Redemption released?", 
+//     answers: {
+//         a: "1995",
+//         b: "1994",
+//         c: "1999",
+//         d: "1989"
+//     },
+//     correctAnswer: "b"
+// },
+
+
+// function for clicking submit button linked to game end function
+$("#submit").click(function(){
     timesUp();
-}
-}
-// function to click answers. Only be able to click one at a time
-// $("answers-1").radio(questions.answers);
+});
 
-
-// function to submit answers
-
-// function for timer to be up
+// function for timer to be up and submit button, displays scores
 function timesUp() {
     clearInterval(intervalID);
     $("#submit").hide();
+    $("#time-rem").hide();
     $("#questions").hide();
-    $("#scores").html(
-        "<div>Correct: " + correctAnswer + "</div>"
+    $("#scores").append(
+        "<div><h3>Correct: " + correctAnswer + "</h3></div><br>",
+        "<div><h3>Incorrect: " + wrongAnswer + "</h3></div><br>",
+        "<div><h3>Not Answered: " + notAnswer + "</h3></div><br>"
     )
 }
