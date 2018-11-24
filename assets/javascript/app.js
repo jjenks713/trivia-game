@@ -66,7 +66,6 @@ var intervalID;
 var correctAnswer = 0;
 var wrongAnswer = 0;
 var notAnswer = 0;
-var questionIndex = 0;
 
 // set timer
 function run() {
@@ -100,15 +99,31 @@ function quizBody() {
 
 // function for questions and answers, add radio buttons for answers.
 function questionsAndAnswers() {
+    
     for (var i = 0; i < questions.length; i++) {
         $("#questions").append("<div><h3>" + questions[i].question + "</h3><div><br>");
 
-        for (var j = 0; j < questions[i].answers.length; j++) {
-            $("#questions").append("<input type='radio' name='question" + i + "' value='" +
-                questions[i].answers[j] + "'>" + questions[i].answers[j]);
-        }
+
+        $("#questions").append(
+            "<div>" + 
+            "<input type='radio' name='question" + i + "' value='" +
+            questions[i].answers.a + "'>" + questions[i].answers.a + "</input> " +
+            "<input type='radio' name='question" + i + "' value='" +
+            questions[i].answers.b + "'>" + questions[i].answers.b + "</input> " +
+            "<input type='radio' name='question" + i + "' value='" +
+            questions[i].answers.c + "'>" + questions[i].answers.c + "</input> " +
+            "<input type='radio' name='question" + i + "' value='" +
+            questions[i].answers.d + "'>" + questions[i].answers.d + "</input> " + 
+            "</div><br>",
+            );
+        
+        // for (var j = 0; j < questions[i].answers.length; j++) {
+        //     $("#questions").append("<div><h4><input type='radio' name='question" + i + "' value='" +
+        //         questions[i].answers[j] + "'>" + questions[i].answers[j] + "</input><h4><div>");
+        //         console.log(questions.answers[j]);
+        // }
     }
-    console.log(answers[j]);
+
 
 }
 // for reference
@@ -123,6 +138,8 @@ function questionsAndAnswers() {
 //     },
 //     correctAnswer: "b"
 // },
+
+// function to know what answers are correct and not.
 
 
 // function for clicking submit button linked to game end function
