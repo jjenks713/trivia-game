@@ -100,52 +100,16 @@ function quizBody() {
 
 // function for questions and answers, add radio buttons for answers.
 function questionsAndAnswers() {
-    if (questionIndex <= (questions.length - 1)) {
-    $("#questions").append(
-        "<div><h3>" + questions[questionIndex].question + "</h3><div><br>",
-    )};
-    if (questionIndex <= (questions.length - 1)) {
-        $("#questions").append(
-    "<div>" + "<input type='radio' name='q1'>" + questions[questionIndex].answers.a + "</input> " +
-    "<input type='radio' name='q1'>" + questions[questionIndex].answers.b + "</input> " +
-    "<input type='radio' name='q1'>" + questions[questionIndex].answers.c + "</input> " +
-    "<input type='radio' name='q1'>" + questions[questionIndex].answers.d + "</input> " + 
-    "</div><br>",
-    )};
-        // "<div><h3>" + questions[1].question + "</h3><div><br>",
-        // "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q2'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q2'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q2'>" + questions.answers + "</input> " + "</div><br>",
+    for (var i = 0; i < questions.length; i++) {
+        $("#questions").append("<div><h3>" + questions[i].question + "</h3><div><br>");
 
+        for (var j = 0; j < questions[i].answers.length; j++) {
+            $("#questions").append("<input type='radio' name='question" + i + "' value='" +
+                questions[i].answers[j] + "'>" + questions[i].answers[j]);
+        }
+    }
+    console.log(answers[j]);
 
-        // "<div><h3>" + questions[2].question + "</h3><div><br>",
-        // "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q3'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q3'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q3'>" + questions.answers + "</input> " + "</div><br>",
-
-
-        // "<div><h3>" + questions[3].question + "</h3><div><br>",
-        // "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q4'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q4'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q4'>" + questions.answers + "</input> " + "</div><br>",
-
-
-        // "<div><h3>" + questions[4].question + "</h3><div><br>",
-        // "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q5'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q5'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q5'>" + questions.answers + "</input> " + "</div><br>",
-
-
-        // "<div><h3>" + questions[5].question + "</h3><div><br>",
-        // "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q6'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q6'>" + questions.answers + "</input> " +
-        // "<input type='radio' name='q6'>" + questions.answers + "</input> " + "</div><br>",
-    // );
 }
 // for reference
 // var questions = [
