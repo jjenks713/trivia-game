@@ -8,7 +8,7 @@ var questions = [
             c: "1999",
             d: "1989"
         },
-        correctAnswer: "b"
+        correctAnswer: "1995"
     },
     {
         question: "What is the highest grossing film of all time?",
@@ -18,7 +18,7 @@ var questions = [
             c: "The Avengers",
             d: "Skyfall"
         },
-        correctAnswer: "b"
+        correctAnswer: "Avatar"
     },
     {
         question: "Which actor has the most Oscar Nominations?",
@@ -28,7 +28,7 @@ var questions = [
             c: "Meryl Streep",
             d: "Katharine Hepburn"
         },
-        correctAnswer: "c"
+        correctAnswer: "Meryl Streep"
     },
     {
         question: "Who directed The Fantastic Mr. Fox?",
@@ -38,7 +38,7 @@ var questions = [
             c: "Ron Howard",
             d: "Wes Anderson"
         },
-        correctAnswer: "d"
+        correctAnswer: "Wes Anderson"
     },
     {
         question: "Who was the lead in The Shining?",
@@ -48,7 +48,7 @@ var questions = [
             c: "Al Pacino",
             d: "Clint Eastwood"
         },
-        correctAnswer: "a"
+        correctAnswer: "Jack Nickolson"
     },
     {
         question: "Who was the first director to break the \"Fourth wall\"?",
@@ -58,27 +58,14 @@ var questions = [
             c: "Ron Howard",
             d: "Quentin Tarantino"
         },
-        correctAnswer: "b"
+        correctAnswer: "Woody Allen"
     },
 ];
 var timer = 60;
 var intervalID;
 var answersCorrect = 0;
 var wrongAnswer = 0;
-var notAnswer = 0;
 
-// set timer
-function run() {
-    intervalID = setInterval(decrement, 1000);
-}
-// grab id for time, set timer function, link to end game function and display answers/score.
-function decrement() {
-    timer--;
-    $("#time-rem").html("<h1>Time Remaining: " + timer + "</h1>");
-    if (timer === 0) {
-        timesUp();
-    }
-}
 
 // grab ID's for Start Game, hide everything else until start is pressed, hide start after pressed
 $(document).ready(function () {
@@ -97,48 +84,80 @@ function quizBody() {
     // alert("hello");
 };
 
+// set timer
+function run() {
+    intervalID = setInterval(decrement, 1000);
+}
+// grab id for time, set timer function, link to end game function and display answers/score.
+function decrement() {
+    timer--;
+    $("#time-rem").html("<h1>Time Remaining: " + timer + "</h1>");
+    if (timer === 0) {
+        timesUp();
+    }
+}
+
 // function for questions and answers, add radio buttons for answers.
 function questionsAndAnswers() {
 
     for (var i = 0; i < questions.length; i++) {
+
         $("#questions").append("<div><h3>" + questions[i].question + "</h3><div><br>");
 
 
         $("#questions").append(
             "<div>" +
-            "<input type='radio' name='question" + i + "' value='" +
-            questions[i].answers.a + "'>" + questions[i].answers.a + "</input> " +
-            "<input type='radio' name='question" + i + "' value='" +
-            questions[i].answers.b + "'>" + questions[i].answers.b + "</input> " +
-            "<input type='radio' name='question" + i + "' value='" +
-            questions[i].answers.c + "'>" + questions[i].answers.c + "</input> " +
-            "<input type='radio' name='question" + i + "' value='" +
-            questions[i].answers.d + "'>" + questions[i].answers.d + "</input> " +
+            "<label><input type='radio' name='question" + i + "' value='" +
+            questions[i].answers.a + "'>" + questions[i].answers.a + "</label> " +
+            "<label><input type='radio' name='question" + i + "' value='" +
+            questions[i].answers.b + "'>" + questions[i].answers.b + "</label> " +
+            "<label><input type='radio' name='question" + i + "' value='" +
+            questions[i].answers.c + "'>" + questions[i].answers.c + "</label> " +
+            "<label><input type='radio' name='question" + i + "' value='" +
+            questions[i].answers.d + "'>" + questions[i].answers.d + "</label> " +
             "</div><br>",
-        );
+        );   
 
-        // for (var j = 0; j < questions[i].answers.length; j++) {
-        //     $("#questions").append("<div><h4><input type='radio' name='question" + i + "' value='" +
-        //         questions[i].answers[j] + "'>" + questions[i].answers[j] + "</input><h4><div>");
-        //         console.log(questions.answers[j]);
-        // }
-        var userGuess = $("#questions[type='radio'][name='question" + i + "']:checked").val();
+        var corAns = questions[i].correctAnswer;
+        var userGuess = $("input[name=question" + i + "]:checked").val();    
 
-        if (userGuess === questions[i].correctAnswer) {
-            answersCorrect++;
-        } else {
-            wrongAnswer++;
-        }
-        if (userGuess === false) {
-            notAnswer++;
-        }
-        console.log(userGuess);
-    }
+            if (userGuess === corAns) {
+                answersCorrect++;
+                alert("correct");
+            } 
+            if (userGuess != corAns) {
+                wrongAnswer++;
+
+            }
+            console.log(userGuess);
+            console.log(corAns);
 
 
+                // for (var j = 0; j < questions[i].answers.length; j++) {
+                //     $("#questions").append("<div><h4><input type='radio' name='question" + i + "' value='" +
+                //         questions[i].answers[j] + "'>" + questions[i].answers[j] + "</input><h4><div>");
+                //         console.log(questions.answers[j]);
+                // }
+
+    };
+};
+// $("#questions").click(function() {
+//         var userGuess = $("#questions input[name='" + questions[0] + "']:checked").val("id");
+
+//         if (userGuess === questions.correctAnswer) {
+//             answersCorrect++;
+//         } 
+//         if(userGuess !== questions.correctAnswer) {
+//             wrongAnswer++;
+//         }
+//         if (userGuess === false) {
+//             notAnswer++;
+//         }
+//         console.log(userGuess);
+//         console.log(questions[0].correctAnswer);
+// })
 
 
-}
 // for reference
 // var questions = [
 //     {
@@ -169,6 +188,5 @@ function timesUp() {
     $("#scores").append(
         "<div><h3>Correct: " + answersCorrect + "</h3></div><br>",
         "<div><h3>Incorrect: " + wrongAnswer + "</h3></div><br>",
-        "<div><h3>Not Answered: " + notAnswer + "</h3></div><br>"
     )
 }
