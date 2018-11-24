@@ -5,7 +5,7 @@ body {
 .section {
     margin-top: 10%;
     padding: 25px;
-    background-color: rgba(29, 31, 32, 0.678);
+    background-color: rgba(29, 31, 32, 0.781);
 }
 .title {
     font-family: 'Monoton', cursive;
@@ -14,4 +14,7 @@ body {
 #quiz-body{
     font-family: 'Allerta Stencil', sans-serif;
     color: rgb(1, 160, 233);
+}
+#time-rem {
+    color: rgb(159, 194, 201);
 }

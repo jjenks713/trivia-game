@@ -63,7 +63,7 @@ var questions = [
 ];
 var timer = 60;
 var intervalID;
-var correctAnswer = 0;
+var answersCorrect = 0;
 var wrongAnswer = 0;
 var notAnswer = 0;
 
@@ -99,13 +99,13 @@ function quizBody() {
 
 // function for questions and answers, add radio buttons for answers.
 function questionsAndAnswers() {
-    
+
     for (var i = 0; i < questions.length; i++) {
         $("#questions").append("<div><h3>" + questions[i].question + "</h3><div><br>");
 
 
         $("#questions").append(
-            "<div>" + 
+            "<div>" +
             "<input type='radio' name='question" + i + "' value='" +
             questions[i].answers.a + "'>" + questions[i].answers.a + "</input> " +
             "<input type='radio' name='question" + i + "' value='" +
@@ -113,16 +113,29 @@ function questionsAndAnswers() {
             "<input type='radio' name='question" + i + "' value='" +
             questions[i].answers.c + "'>" + questions[i].answers.c + "</input> " +
             "<input type='radio' name='question" + i + "' value='" +
-            questions[i].answers.d + "'>" + questions[i].answers.d + "</input> " + 
+            questions[i].answers.d + "'>" + questions[i].answers.d + "</input> " +
             "</div><br>",
-            );
-        
+        );
+
         // for (var j = 0; j < questions[i].answers.length; j++) {
         //     $("#questions").append("<div><h4><input type='radio' name='question" + i + "' value='" +
         //         questions[i].answers[j] + "'>" + questions[i].answers[j] + "</input><h4><div>");
         //         console.log(questions.answers[j]);
         // }
+        var userGuess = $("#questions[type='radio'][name='question" + i + "']:checked").val();
+
+        if (userGuess === questions[i].correctAnswer) {
+            answersCorrect++;
+        } else {
+            wrongAnswer++;
+        }
+        if (userGuess === false) {
+            notAnswer++;
+        }
+        console.log(userGuess);
     }
+
+
 
 
 }
@@ -154,7 +167,7 @@ function timesUp() {
     $("#time-rem").hide();
     $("#questions").hide();
     $("#scores").append(
-        "<div><h3>Correct: " + correctAnswer + "</h3></div><br>",
+        "<div><h3>Correct: " + answersCorrect + "</h3></div><br>",
         "<div><h3>Incorrect: " + wrongAnswer + "</h3></div><br>",
         "<div><h3>Not Answered: " + notAnswer + "</h3></div><br>"
     )
