@@ -66,6 +66,7 @@ var intervalID;
 var correctAnswer = 0;
 var wrongAnswer = 0;
 var notAnswer = 0;
+var questionIndex = 0;
 
 // set timer
 function run() {
@@ -99,50 +100,52 @@ function quizBody() {
 
 // function for questions and answers, add radio buttons for answers.
 function questionsAndAnswers() {
-    // var output = [];
-    // questions.forEach()
+    if (questionIndex <= (questions.length - 1)) {
     $("#questions").append(
-        "<div><h3>What year was The Shawshank Redemption released?</h3><div><br>",
-        "<div>" + "<input type='radio' name='q1'>" + questions[1].answers[1] + "</input> " +
-        "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q1'>" + questions.answers + "</input> " + "</div><br>",
+        "<div><h3>" + questions[questionIndex].question + "</h3><div><br>",
+    )};
+    if (questionIndex <= (questions.length - 1)) {
+        $("#questions").append(
+    "<div>" + "<input type='radio' name='q1'>" + questions[questionIndex].answers.a + "</input> " +
+    "<input type='radio' name='q1'>" + questions[questionIndex].answers.b + "</input> " +
+    "<input type='radio' name='q1'>" + questions[questionIndex].answers.c + "</input> " +
+    "<input type='radio' name='q1'>" + questions[questionIndex].answers.d + "</input> " + 
+    "</div><br>",
+    )};
+        // "<div><h3>" + questions[1].question + "</h3><div><br>",
+        // "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q2'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q2'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q2'>" + questions.answers + "</input> " + "</div><br>",
 
 
-        "<div><h3>Who was the first director to break the \"Fourth wall\"?</h3><div><br>",
-        "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q2'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q2'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q2'>" + questions.answers + "</input> " + "</div><br>",
+        // "<div><h3>" + questions[2].question + "</h3><div><br>",
+        // "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q3'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q3'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q3'>" + questions.answers + "</input> " + "</div><br>",
 
 
-        "<div><h3>What year was The Shawshank Redemption released?</h3><div><br>",
-        "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q3'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q3'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q3'>" + questions.answers + "</input> " + "</div><br>",
+        // "<div><h3>" + questions[3].question + "</h3><div><br>",
+        // "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q4'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q4'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q4'>" + questions.answers + "</input> " + "</div><br>",
 
 
-        "<div><h3>What year was The Shawshank Redemption released?</h3><div><br>",
-        "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q4'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q4'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q4'>" + questions.answers + "</input> " + "</div><br>",
+        // "<div><h3>" + questions[4].question + "</h3><div><br>",
+        // "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q5'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q5'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q5'>" + questions.answers + "</input> " + "</div><br>",
 
 
-        "<div><h3>What year was The Shawshank Redemption released?</h3><div><br>",
-        "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q5'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q5'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q5'>" + questions.answers + "</input> " + "</div><br>",
-
-
-        "<div><h3>What year was The Shawshank Redemption released?</h3><div><br>",
-        "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q6'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q6'>" + questions.answers + "</input> " +
-        "<input type='radio' name='q6'>" + questions.answers + "</input> " + "</div><br>",
-    );
+        // "<div><h3>" + questions[5].question + "</h3><div><br>",
+        // "<div>" + "<input type='radio' name='q1'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q6'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q6'>" + questions.answers + "</input> " +
+        // "<input type='radio' name='q6'>" + questions.answers + "</input> " + "</div><br>",
+    // );
 }
 // for reference
 // var questions = [
