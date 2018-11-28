@@ -2,62 +2,62 @@
 var questions = [
     {
         question: "What year was The Shawshank Redemption released?",
-        answers: {
-            a: "1995",
-            b: "1994",
-            c: "1999",
-            d: "1989"
-        },
+        answers: [
+            "1995",
+            "1994",
+            "1999",
+            "1989"
+        ],
         correctAnswer: "1995"
     },
     {
         question: "What is the highest grossing film of all time?",
-        answers: {
-            a: "Titanic",
-            b: "Avatar",
-            c: "The Avengers",
-            d: "Skyfall"
-        },
+        answers: [
+            "Titanic",
+            "Avatar",
+            "The Avengers",
+            "Skyfall"
+        ],
         correctAnswer: "Avatar"
     },
     {
         question: "Which actor has the most Oscar Nominations?",
-        answers: {
-            a: "Denzel Washington",
-            b: "Jeff Bridges",
-            c: "Meryl Streep",
-            d: "Katharine Hepburn"
-        },
+        answers: [
+            "Denzel Washington",
+            "Jeff Bridges",
+            "Meryl Streep",
+            "Katharine Hepburn"
+        ],
         correctAnswer: "Meryl Streep"
     },
     {
         question: "Who directed The Fantastic Mr. Fox?",
-        answers: {
-            a: "Steven Spielberg",
-            b: "Quentin Tarantino",
-            c: "Ron Howard",
-            d: "Wes Anderson"
-        },
+        answers: [
+            "Steven Spielberg",
+            "Quentin Tarantino",
+            "Ron Howard",
+            "Wes Anderson"
+        ],
         correctAnswer: "Wes Anderson"
     },
     {
         question: "Who was the lead in The Shining?",
-        answers: {
-            a: "Jack Nickolson",
-            b: "Robert De Niro",
-            c: "Al Pacino",
-            d: "Clint Eastwood"
-        },
+        answers: [
+            "Jack Nickolson",
+            "Robert De Niro",
+            "Al Pacino",
+            "Clint Eastwood"
+        ],
         correctAnswer: "Jack Nickolson"
     },
     {
         question: "Who was the first director to break the \"Fourth wall\"?",
-        answers: {
-            a: "Martin Scorsese",
-            b: "Woody Allen",
-            c: "Ron Howard",
-            d: "Quentin Tarantino"
-        },
+        answers: [
+            "Martin Scorsese",
+            "Woody Allen",
+            "Ron Howard",
+            "Quentin Tarantino"
+        ],
         correctAnswer: "Woody Allen"
     },
 ];
@@ -77,7 +77,6 @@ $("#start-game").click(quizBody);
 
 function quizBody() {
     run();
-
     $("#start-game").hide();
     $("#submit").show();
     questionsAndAnswers();
@@ -103,51 +102,35 @@ function questionsAndAnswers() {
     for (var i = 0; i < questions.length; i++) {
 
         $("#questions").append("<div><h3>" + questions[i].question + "</h3><div><br>");
-
-
-        $("#questions").append(
-            "<div>" +
-            "<label><input type='radio' name='question" + i + "' value='" +
-            questions[i].answers.a + "'>" + questions[i].answers.a + "</label> " +
-            "<label><input type='radio' name='question" + i + "' value='" +
-            questions[i].answers.b + "'>" + questions[i].answers.b + "</label> " +
-            "<label><input type='radio' name='question" + i + "' value='" +
-            questions[i].answers.c + "'>" + questions[i].answers.c + "</label> " +
-            "<label><input type='radio' name='question" + i + "' value='" +
-            questions[i].answers.d + "'>" + questions[i].answers.d + "</label> " +
-            "</div><br>",
-        );   
-
-        var corAns = questions[i].correctAnswer;
-        var userGuess = $("input[name=question" + i + "]:checked").val();    
-
-            if (userGuess === corAns) {
-                answersCorrect++;
-                alert("correct");
-            } 
-            if (userGuess != corAns) {
-                wrongAnswer++;
-
+        
+            for (var j = 0; j < questions[i].answers.length; j++) {
+                $("#questions").append("<input type='radio' name='question" + i + "' value='" +
+                    questions[i].answers[j] + "'>" + questions[i].answers[j]);
+                    
             }
-            console.log(userGuess);
-            console.log(corAns);
 
-
-                // for (var j = 0; j < questions[i].answers.length; j++) {
-                //     $("#questions").append("<div><h4><input type='radio' name='question" + i + "' value='" +
-                //         questions[i].answers[j] + "'>" + questions[i].answers[j] + "</input><h4><div>");
-                //         console.log(questions.answers[j]);
-                // }
-
+            console.log(questions[i].answers[j]);
     };
 };
-// $("#questions").click(function() {
-//         var userGuess = $("#questions input[name='" + questions[0] + "']:checked").val("id");
+function eachClick() {
+    $.each($("input[name='question" + questions[0] + "']:checked"));
 
-//         if (userGuess === questions.correctAnswer) {
+    if ($(this).val() === questions[0].correctAnswer) {
+        answersCorrect++;
+    } 
+    else {
+        wrongAnswer++;
+    }
+    console.log($(this).val());
+    console.log(questions[0].correctAnswer);
+}
+// $("#questions").click(function() {
+//         var userGuess = $("input[name='question" + questions[0] + "']:checked").val();
+
+//         if (userGuess === questions[0].correctAnswer) {
 //             answersCorrect++;
 //         } 
-//         if(userGuess !== questions.correctAnswer) {
+//         else {
 //             wrongAnswer++;
 //         }
 //         if (userGuess === false) {
@@ -172,7 +155,9 @@ function questionsAndAnswers() {
 // },
 
 // function to know what answers are correct and not.
-
+$("#questions").click(function(){
+    eachClick();
+})
 
 // function for clicking submit button linked to game end function
 $("#submit").click(function () {
