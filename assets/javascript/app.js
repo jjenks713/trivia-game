@@ -61,14 +61,13 @@ var questions = [
         correctAnswer: "Woody Allen"
     },
 ];
-var timer = 60;
+var timer = 10;
 var intervalID;
 
 
 var game = {
     answersCorrect: 0,
     wrongAnswer: 0,
-    notAnswered: 0
 }
 
 
@@ -127,9 +126,6 @@ function eachClick() {
         else {
             game.wrongAnswer++;
         }
-        if ($(this).val() <= 0) {
-            game.notAnswered++;
-        }
         console.log(this);
     });
     
@@ -139,9 +135,6 @@ function eachClick() {
         } else {
             game.wrongAnswer++;
         }
-        if ($(this).val() <= 0) {
-            game.notAnswered++;
-        }
         console.log(this);
     });
     $.each($("input[name='question-2']:checked"), function () {
@@ -149,9 +142,6 @@ function eachClick() {
             game.answersCorrect++;
         } else {
             game.wrongAnswer++;
-        }
-        if ($(this).val() <= 0) {
-            game.notAnswered++;
         }
         console.log(this);
     });
@@ -161,9 +151,6 @@ function eachClick() {
         } else {
             game.wrongAnswer++;
         }
-        if ($(this).val() <= 0) {
-            game.notAnswered++;
-        }
         console.log(this);
     });
     $.each($("input[name='question-4']:checked"), function () {
@@ -172,9 +159,6 @@ function eachClick() {
         } else {
             game.wrongAnswer++;
         }
-        if ($(this).val() <= 0) {
-            game.notAnswered++;
-        }
         console.log(this);
     });
     $.each($("input[name='question-5']:checked"), function () {
@@ -182,9 +166,6 @@ function eachClick() {
             game.answersCorrect++;
         } else {
             game.wrongAnswer++;
-        }
-        if ($(this).val() <= 0) {
-            game.notAnswered++;
         }
         console.log(this);
     });
@@ -196,12 +177,6 @@ function eachClick() {
     
     this.timesUp();
 };
-
-// eachClick($.each());
-console.log(questions[0].correctAnswer);
-
-// function to know what answers are correct and not.
-
 
 // function for clicking submit button linked to game end function
 $("#submit").click(function () {
@@ -218,6 +193,6 @@ function timesUp() {
         "<div><h2>All Done</h2></div><br>",
         "<div><h3>Correct: " + game.answersCorrect + "</h3></div><br>",
         "<div><h3>Incorrect: " + game.wrongAnswer + "</h3></div><br>",
-        "<div><h3>Not Answered: " + game.notAnswered + "</h3></div><br>"
+        "<div><h3>Unanswered: " + (questions.length - (game.answersCorrect + game.wrongAnswer)) + "</h3></div><br>"
     )
 }
