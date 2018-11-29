@@ -108,8 +108,8 @@ function questionsAndAnswers() {
         $("#questions").append("<div><h3>" + questions[i].question + "</h3><div><br>");
         
             for (var j = 0; j < questions[i].answers.length; j++) {
-                $("#questions").append("<input type='radio' name='question-" + i + "' value='" +
-                    questions[i].answers[j] + "'>" + questions[i].answers[j] + " ");
+                $("#questions").append("<label><input type='radio' name='question-" + i + "' value='" +
+                    questions[i].answers[j] + "'>" + questions[i].answers[j] + " <label> <br>");
                     
             }
 
