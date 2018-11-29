@@ -63,8 +63,12 @@ var questions = [
 ];
 var timer = 60;
 var intervalID;
-var answersCorrect = 0;
-var wrongAnswer = 0;
+
+
+var game = {
+    answersCorrect: 0,
+    wrongAnswer: 0
+}
 
 
 // grab ID's for Start Game, hide everything else until start is pressed, hide start after pressed
@@ -104,60 +108,74 @@ function questionsAndAnswers() {
         $("#questions").append("<div><h3>" + questions[i].question + "</h3><div><br>");
         
             for (var j = 0; j < questions[i].answers.length; j++) {
-                $("#questions").append("<input type='radio' name='question" + i + "' value='" +
-                    questions[i].answers[j] + "'>" + questions[i].answers[j]);
+                $("#questions").append("<input type='radio' name='question-" + i + "' value='" +
+                    questions[i].answers[j] + "'>" + questions[i].answers[j] + " ");
                     
             }
 
             console.log(questions[i].answers[j]);
     };
 };
+
 function eachClick() {
-    $.each($("input[name='question" + questions[0] + "']:checked"));
 
-    if ($(this).val() === questions[0].correctAnswer) {
-        answersCorrect++;
-    } 
-    else {
-        wrongAnswer++;
-    }
-    console.log($(this).val());
-    console.log(questions[0].correctAnswer);
-}
-// $("#questions").click(function() {
-//         var userGuess = $("input[name='question" + questions[0] + "']:checked").val();
+    $.each($("input[name='question-0']:checked"), function() {
+        if ($(this).val() === questions[0].correctAnswer) {
+            game.answersCorrect++;
+        } 
+        else {
+            game.wrongAnswer++;
+        }
+        console.log(this);
+    });
+    $.each($("input[name='question-1']:checked"), function () {
+        if ($(this).val() == questions[1].correctAnswer) {           
+            game.answersCorrect++;
+        } else {
+            game.wrongAnswer++;
+        }
+        console.log(this);
+    });
+    $.each($("input[name='question-2']:checked"), function () {
+        if ($(this).val() == questions[2].correctAnswer) {            
+            game.answersCorrect++;
+        } else {
+            game.wrongAnswer++;
+        }
+        console.log(this);
+    });
+    $.each($("input[name='question-3']:checked"), function () {
+        if ($(this).val() == questions[3].correctAnswer) {            
+            game.answersCorrect++;
+        } else {
+            game.wrongAnswer++;
+        }
+        console.log(this);
+    });
+    $.each($("input[name='question-4']:checked"), function () {
+        if ($(this).val() == questions[4].correctAnswer) {            
+            game.answersCorrect++;
+        } else {
+            game.wrongAnswer++;
+        }
+        console.log(this);
+    });
+    $.each($("input[name='question-5']:checked"), function () {
+        if ($(this).val() == questions[5].correctAnswer) {           
+            game.answersCorrect++;
+        } else {
+            game.wrongAnswer++;
+        }
+        console.log(this);
+    });
+};
 
-//         if (userGuess === questions[0].correctAnswer) {
-//             answersCorrect++;
-//         } 
-//         else {
-//             wrongAnswer++;
-//         }
-//         if (userGuess === false) {
-//             notAnswer++;
-//         }
-//         console.log(userGuess);
-//         console.log(questions[0].correctAnswer);
-// })
-
-
-// for reference
-// var questions = [
-//     {
-//     question: "What year was The Shawshank Redemption released?", 
-//     answers: {
-//         a: "1995",
-//         b: "1994",
-//         c: "1999",
-//         d: "1989"
-//     },
-//     correctAnswer: "b"
-// },
+console.log(questions[0].correctAnswer);
 
 // function to know what answers are correct and not.
-$("#questions").click(function(){
+$("#questions").click(function() {
     eachClick();
-})
+});
 
 // function for clicking submit button linked to game end function
 $("#submit").click(function () {
@@ -171,7 +189,7 @@ function timesUp() {
     $("#time-rem").hide();
     $("#questions").hide();
     $("#scores").append(
-        "<div><h3>Correct: " + answersCorrect + "</h3></div><br>",
-        "<div><h3>Incorrect: " + wrongAnswer + "</h3></div><br>",
+        "<div><h3>Correct: " + game.answersCorrect + "</h3></div><br>",
+        "<div><h3>Incorrect: " + game.wrongAnswer + "</h3></div><br>",
     )
 }
