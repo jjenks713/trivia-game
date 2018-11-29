@@ -113,11 +113,11 @@ function questionsAndAnswers() {
                     
             }
 
-            console.log(questions[i].answers[j]);
+            console.log(questions[i].answers);
     };
 };
 
-function eachClick() {
+$("#questions").click(function() {
 
     $.each($("input[name='question-0']:checked"), function() {
         if ($(this).val() === questions[0].correctAnswer) {
@@ -128,6 +128,7 @@ function eachClick() {
         }
         console.log(this);
     });
+    
     $.each($("input[name='question-1']:checked"), function () {
         if ($(this).val() == questions[1].correctAnswer) {           
             game.answersCorrect++;
@@ -168,14 +169,15 @@ function eachClick() {
         }
         console.log(this);
     });
-};
+});
 
+// eachClick($.each());
 console.log(questions[0].correctAnswer);
 
 // function to know what answers are correct and not.
-$("#questions").click(function() {
-    eachClick();
-});
+// $("#questions").click(function() {
+//     eachClick();
+// });
 
 // function for clicking submit button linked to game end function
 $("#submit").click(function () {
