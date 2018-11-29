@@ -61,7 +61,7 @@ var questions = [
         correctAnswer: "Woody Allen"
     },
 ];
-var timer = 10;
+var timer = 45;
 var intervalID;
 
 
@@ -96,7 +96,7 @@ function decrement() {
     timer--;
     $("#time-rem").html("<h1>Time Remaining: " + timer + "</h1>");
     if (timer === 0) {
-        timesUp();
+        eachClick()
     }
 }
 
