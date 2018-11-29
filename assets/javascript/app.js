@@ -67,7 +67,8 @@ var intervalID;
 
 var game = {
     answersCorrect: 0,
-    wrongAnswer: 0
+    wrongAnswer: 0,
+    notAnswered: 0
 }
 
 
@@ -117,7 +118,7 @@ function questionsAndAnswers() {
     };
 };
 
-$("#questions").click(function() {
+function eachClick() {
 
     $.each($("input[name='question-0']:checked"), function() {
         if ($(this).val() === questions[0].correctAnswer) {
@@ -126,62 +127,85 @@ $("#questions").click(function() {
         else {
             game.wrongAnswer++;
         }
+        if ($(this).val() <= 0) {
+            game.notAnswered++;
+        }
         console.log(this);
     });
     
     $.each($("input[name='question-1']:checked"), function () {
-        if ($(this).val() == questions[1].correctAnswer) {           
+        if ($(this).val() === questions[1].correctAnswer) {           
             game.answersCorrect++;
         } else {
             game.wrongAnswer++;
+        }
+        if ($(this).val() <= 0) {
+            game.notAnswered++;
         }
         console.log(this);
     });
     $.each($("input[name='question-2']:checked"), function () {
-        if ($(this).val() == questions[2].correctAnswer) {            
+        if ($(this).val() === questions[2].correctAnswer) {            
             game.answersCorrect++;
         } else {
             game.wrongAnswer++;
+        }
+        if ($(this).val() <= 0) {
+            game.notAnswered++;
         }
         console.log(this);
     });
     $.each($("input[name='question-3']:checked"), function () {
-        if ($(this).val() == questions[3].correctAnswer) {            
+        if ($(this).val() === questions[3].correctAnswer) {            
             game.answersCorrect++;
         } else {
             game.wrongAnswer++;
+        }
+        if ($(this).val() <= 0) {
+            game.notAnswered++;
         }
         console.log(this);
     });
     $.each($("input[name='question-4']:checked"), function () {
-        if ($(this).val() == questions[4].correctAnswer) {            
+        if ($(this).val() === questions[4].correctAnswer) {            
             game.answersCorrect++;
         } else {
             game.wrongAnswer++;
+        }
+        if ($(this).val() <= 0) {
+            game.notAnswered++;
         }
         console.log(this);
     });
     $.each($("input[name='question-5']:checked"), function () {
-        if ($(this).val() == questions[5].correctAnswer) {           
+        if ($(this).val() === questions[5].correctAnswer) {           
             game.answersCorrect++;
         } else {
             game.wrongAnswer++;
         }
+        if ($(this).val() <= 0) {
+            game.notAnswered++;
+        }
         console.log(this);
     });
-});
+    // $.each($("input:radio:notchecked"), function () {
+    //     if ($(this).val) {
+    //         game.notAnswered++;
+    //     }
+    // });
+    
+    this.timesUp();
+};
 
 // eachClick($.each());
 console.log(questions[0].correctAnswer);
 
 // function to know what answers are correct and not.
-// $("#questions").click(function() {
-//     eachClick();
-// });
+
 
 // function for clicking submit button linked to game end function
 $("#submit").click(function () {
-    timesUp();
+    eachClick();
 });
 
 // function for timer to be up and submit button, displays scores
@@ -191,7 +215,9 @@ function timesUp() {
     $("#time-rem").hide();
     $("#questions").hide();
     $("#scores").append(
+        "<div><h2>All Done</h2></div><br>",
         "<div><h3>Correct: " + game.answersCorrect + "</h3></div><br>",
         "<div><h3>Incorrect: " + game.wrongAnswer + "</h3></div><br>",
+        "<div><h3>Not Answered: " + game.notAnswered + "</h3></div><br>"
     )
 }
