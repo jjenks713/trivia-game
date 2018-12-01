@@ -74,6 +74,7 @@ var game = {
 // grab ID's for Start Game, hide everything else until start is pressed, hide start after pressed
 $(document).ready(function () {
     $("#submit").hide();
+    
     // $("#time-rem").hide();
 });
 
@@ -169,11 +170,6 @@ function eachClick() {
         }
         console.log(this);
     });
-    // $.each($("input:radio:notchecked"), function () {
-    //     if ($(this).val) {
-    //         game.notAnswered++;
-    //     }
-    // });
 
     this.timesUp();
 };
@@ -181,6 +177,7 @@ function eachClick() {
 // function for clicking submit button linked to game end function
 $("#submit").click(function () {
     eachClick();
+    
 });
 
 // function for timer to be up and submit button, displays scores
